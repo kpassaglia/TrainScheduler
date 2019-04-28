@@ -15,12 +15,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-
-    <!---Moment.JS Reference-->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
 </head>
 
 <body>
@@ -75,25 +69,22 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group row">
-                                <label for="employee-name">Train Name</label>
-                                <input class="form-control" id="train-name" type="text">
+                                <label for="trainName">Train Name</label>
+                                <input class="form-control" id="trainName" type="text">
                             </div>
                             <div class="form-group row">
-                                <label for="role">Destination</label>
+                                <label for="destination">Destination</label>
                                 <input class="form-control" id="destination" type="text">
                             </div>
                             <div class="form-group row">
-                                <label for="start-date">First Train Time (HH:mm - military time)</label>
-                                <input class="form-control" id="next-arrival" type="text">
+                                <label for="firstTime">First Train Time (HH:mm - military time)</label>
+                                <input class="form-control" id="firstTime" type="text">
                             </div>
                             <div class="form-group row">
-                                <label for="monthly-rate">Frequency (min)</label>
+                                <label for="frequency">Frequency (min)</label>
                                 <input class="form-control" id="frequency" type="number">
                             </div>
-                            <div class="form-group row">
-                                    <label for="monthly-rate">Minutes Away</label>
-                                    <input class="form-control" id="min-away" type="number">
-                                </div>
+                        
                             <button class="btn btn-info" id="submit-btn" type="submit">Submit</button>
                         </form>
                     </div>
@@ -103,9 +94,13 @@
         </div>
 
     </div>
+     <!-- Firebase Reference -->
+     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+      <!---Moment.JS Reference-->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <!-- JavaScript Reference -->
-    <script src="/Assets/Javascript/trains.js"></script>
+    <script src="/Javascript/trains.js"></script>
 
 </body>
 
