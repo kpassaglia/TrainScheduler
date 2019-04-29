@@ -15,14 +15,15 @@ var database = firebase.database();
 
 $("#submit-btn").on("click", function (event) {
     event.preventDefault();
-
     var trainName = $("#trainName").val().trim();
     var destination = $("#destination").val().trim();
     var frequency = $("#frequency").val().trim();
     var firstTime =  $("#firstTime").val().trim();
+    if(frequency == ""){ 
+        alert("Please submit Train Frequency");
+        return;
+    } else{
 
-
-    
     //FIREBASE SECTION _____________________________________ 
 
 var newTrain = {
@@ -40,11 +41,12 @@ var newTrain = {
     $("#firstTime").val("");
     $("#frequency").val("");
    
-      
-    //FIREBASE WRITE SECTION _____________________________________
-
-
+    
+    };
 });
+
+//FIREBASE WRITE SECTION _____________________________________
+
 var currentTime = moment();
 var updateTime = setInterval(timeNow, 1000)
 
