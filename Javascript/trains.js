@@ -21,6 +21,7 @@ $("#submit-btn").on("click", function (event) {
     var frequency = $("#frequency").val().trim();
     var firstTime =  $("#firstTime").val().trim();
 
+
     
     //FIREBASE SECTION _____________________________________ 
 
@@ -44,33 +45,46 @@ var newTrain = {
 
 
 });
-
+var currentTime = moment();
+var updateTime = setInterval(timeNow, 1000)
 
 database.ref().on("child_added", function(childSnapshot){
     var data = childSnapshot.val();
     var tbody = $('tbody');
     var tRow = $("<tr>");
+    
+    console.log("Current time: " + currentTime)
+    console.log("min: " + data.frequency)
+
+    var firstTimeConverted = moment(data.firstTime, "hh:mm").subtract(1, "years");  
+    console.log("first Time: " + firstTimeConverted);
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("Time Diff: " + diffTime);
+    var tRemainder = diffTime % data.frequency;
+    console.log("remainder: " + tRemainder);
+
+    var tMinutesTillTrain = data.frequency - tRemainder;
+    console.log(tMinutesTillTrain);
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log(nextTrain);
+    var nextArrival = moment(nextTrain).format("hh:mm");
+    console.log("Next Arrival: "+ nextArrival);
+
     var nameCell = $('<td>').text(data.trainName);
     var destinationCell = $('<td>').text(data.destination);
     var frequencyCell = $('<td>').text(data.frequency);
     var nextArrivalCell = $('<td>').text(nextArrival);
-    var minAwayCell = $('<td>').text(nextArrival);
-
-
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");  
-    var currentTime = moment();
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-            var tRemainder = diffTime % frequency;
-            var tMinutesTillTrain = frequency - tRemainder;
-            var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-            var nextArrival = moment(nextTrain).format("hh:mm");
-
+    var minAwayCell = $('<td>').text(tMinutesTillTrain);
 
     tRow.append(nameCell, destinationCell, frequencyCell, nextArrivalCell, minAwayCell);
     tbody.append(tRow);
 });
 
+function timeNow(){
+ var timeNow = moment().format("hh:mm:ss A");
+ $("#timeNow").text(timeNow);
 
+}
 
 
 
